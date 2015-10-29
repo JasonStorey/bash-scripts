@@ -11,6 +11,7 @@ fi
 function generateNpmProdge() {
     mkdir $NAME_OF_PRODGE && cd $NAME_OF_PRODGE
     npm init -y
+    sed -i '' 's/"scripts": {/& \'$'\n    "clean": "mkdir -p dist",/' package.json
 }
 
 if [ $TYPE_OF_PRODGE = "npm" ]; then
