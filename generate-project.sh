@@ -9,9 +9,17 @@ if [[ $# -eq 0 || -z "$NAME_OF_PRODGE" ]]; then
 fi
 
 function generateNpmProdge() {
-    mkdir $NAME_OF_PRODGE && cd $NAME_OF_PRODGE
-    npm init -y
-    sed -i '' 's/"scripts": {/& \'$'\n    "clean": "mkdir -p dist",/' package.json
+    mkdir $NAME_OF_PRODGE &&
+    sed "s/%%PROJECT_NAME%%/${NAME_OF_PRODGE}/g;
+         s/%%PROJECT_VERSION%%/0.1.0/g;
+         s/%%PROJECT_DESCRIPTION%%/A new and wonderful project/g;
+         s/%%LIB_NAME%%/${NAME_OF_PRODGE}/g" ~/projects/bash-scripts/package-template.json > ./${NAME_OF_PRODGE}/package.json
+
+    if [ $? -eq 0 ]; then
+        cd $NAME_OF_PRODGE
+        npm init -y
+        # sed -i '' 's/"scripts": {/& \'$'\n    "clean": "mkdir -p dist",/' package.json
+    fi
 }
 
 if [ $TYPE_OF_PRODGE = "npm" ]; then

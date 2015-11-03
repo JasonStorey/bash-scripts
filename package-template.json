@@ -1,0 +1,14 @@
+{
+  "name": "%%PROJECT_NAME%%",
+  "version": "%%PROJECT_VERSION%%",
+  "description": "%%PROJECT_DESCRIPTION%%",
+  "main": "index.js",
+  "scripts": { 
+    "clean": "mkdir -p ./dist && rm -rf ./dist/*",
+    "build": "npm run clean && browserify ./index.js --standalone %%LIB_NAME%% -t babelify -o ./dist/%%PROJECT_NAME%%.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
